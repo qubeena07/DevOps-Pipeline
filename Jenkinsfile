@@ -7,7 +7,12 @@ node{
 
     stage('Build image') {
         // Build the actual image
-        app = docker.build("pipeline1/pipeline")
+        steps {
+            script {
+                app = docker.build("pipeline1/pipeline")
+            }
+        }
+
         }
 
     stage('Test imagae'){

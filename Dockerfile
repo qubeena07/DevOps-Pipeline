@@ -1,4 +1,4 @@
-From node:7-onbuild
+From node:18
 
 #set maintainer
 Label maintainer="qubeena7@gmail.com"
