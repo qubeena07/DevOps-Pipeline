@@ -39,6 +39,13 @@ node{
             app.push("latest")
         }
     }
+    stage('Check env') {
+        steps {
+            sh 'echo $PATH'
+            sh 'which docker || echo "Docker not found"'
+  }
+}
+
 
     
 
