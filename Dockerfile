@@ -20,4 +20,4 @@ HEALTHCHECK --interval=5s --timeout=5s CMD curl -f http://localhost:8000/ || exi
 EXPOSE 8000
 
 # Start your app - update 'app.js' to your actual entry point file
-CMD ["node", "app.js"]
+CMD ["node", "main.js"]
