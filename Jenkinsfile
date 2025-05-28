@@ -15,13 +15,11 @@ node {
 
     stage('Test image') {
         withEnv(["PATH+DOCKER=/opt/homebrew/bin"]) {
-            app.inside {
-                sh 'echo "Running tests..."'
-                sh 'sleep 5'
-                sh 'echo "Tests completed successfully!"'
+            sh 'docker inspect -f . pipeline1/pipeline'
+            // Run tests without docker.image(...).inside if docker CLI needed
+            sh 'echo "Run your tests here without docker inside"'
             }
         }
-    }
 
     stage('Push image') {
         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
