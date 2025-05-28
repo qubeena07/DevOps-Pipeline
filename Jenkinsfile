@@ -6,9 +6,10 @@ node {
     }
 
     stage('Build image') {
-        // app = docker.build("pipeline1/pipeline")
-        withEnv(["PATH+DOCKER=/usr/local/bin"]) {  // adjust path accordingly
-            app = docker.build("pipeline1/pipeline")
+        withEnv(["PATH+DOCKER=/opt/homebrew/bin"]) {  // add docker's directory here
+            script {
+                app = docker.build("pipeline1/pipeline")
+            }
         }
     }
 
@@ -18,9 +19,6 @@ node {
             sh 'sleep 5'
             sh 'echo "Tests completed successfully!"'
         }
-        app.inside {
-            sh 'echo "Test passed"'
-        }
     }
 
     stage('Push image') {
@@ -29,11 +27,12 @@ node {
             app.push("latest")
         }
     }
-
-    stage('Check env') {
-        sh 'echo $PATH'
-        sh 'which docker || echo "Docker not found"'
-    }
+    stage('Check PATH') {
+        steps {
+            sh 'echo $PATH'
+            sh 'which docker || echo "docker not found"'
+        }
+}
 }
 
 
