@@ -14,10 +14,12 @@ node {
     }
 
     stage('Test image') {
-        app.inside {
-            sh 'echo "Running tests..."'
-            sh 'sleep 5'
-            sh 'echo "Tests completed successfully!"'
+        withEnv(["PATH+DOCKER=/opt/homebrew/bin"]) {
+            app.inside {
+                sh 'echo "Running tests..."'
+                sh 'sleep 5'
+                sh 'echo "Tests completed successfully!"'
+            }
         }
     }
 
