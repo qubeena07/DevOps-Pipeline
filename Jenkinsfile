@@ -6,7 +6,10 @@ node {
     }
 
     stage('Build image') {
-        app = docker.build("pipeline1/pipeline")
+        // app = docker.build("pipeline1/pipeline")
+        withEnv(["PATH+DOCKER=/usr/local/bin"]) {  // adjust path accordingly
+            app = docker.build("pipeline1/pipeline")
+        }
     }
 
     stage('Test image') {
