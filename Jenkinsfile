@@ -22,11 +22,12 @@ node{
             sh 'sleep 5' // Simulating test execution
             sh 'echo "Tests completed successfully!"'
         }
-    }
+        
         app.inside {
             // Run tests inside the container
             sh 'echo "Test passed"'
         }
+    }
     
     stage('Push image') {
          /* Finally, we'll push the image with two tags:
